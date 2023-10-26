@@ -1,19 +1,29 @@
 import { useForm } from "react-hook-form"; // import react-hook-forms //
 import { DevTool } from "@hookform/devtools"; // import package devtools Hook form //
+import { useState } from "react";
 
 const Login = () => {
   const numbers = Array.from({ length: 43 }, (_, index) => index + 18); //generate age
+  // **create state users //
 
-  // ** Destructer pakage use form ** //
+  // ** Destructer package use form ** //
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
   } = useForm();
-
+  // func to send data //
   const submit = (data) => {
     console.log(data);
+  };
+
+  // **Validate space Custome validation** //
+  const validateNoSpaces = (value) => {
+    if (/\s/.test(value)) {
+      return "Username cannot contain spaces";
+    }
+    return true;
   };
 
   return (
@@ -32,14 +42,18 @@ const Login = () => {
           {...register("name", {
             required: { value: true, message: "fields is required " },
             minLength: { value: 4, message: "3 characters above" },
-            maxLength: 8,
-          })} //Name and Options
+            maxLength: { value: 8, message: "max 8 char pleas" },
+            validate: validateNoSpaces,
+          })} //**Name and Options**
         />
+
         {errors.name && (
+          //**Check Errors in fields**//
           <strong className="alert alert-dismissible alert-danger">
             {errors.name.message}
           </strong>
         )}
+
         <label className="text-dark fs-3" htmlFor="email">
           Email
         </label>
@@ -88,7 +102,6 @@ const Login = () => {
             <strong>{errors.age.message}</strong>
           </div>
         )}
-
         <label className="text-dark fs-3" htmlFor="password">
           Paasword
         </label>
