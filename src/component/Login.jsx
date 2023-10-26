@@ -18,7 +18,7 @@ const Login = () => {
 
   return (
     <div className="container">
-      <h2></h2>Cretae New a Account
+      <h2 className="text-center">Cretae New a Account</h2>
       <form
         onSubmit={handleSubmit(submit)}
         className="d-flex flex-column gap-1"
