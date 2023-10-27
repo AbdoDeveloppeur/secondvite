@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form"; // import react-hook-forms //
 import { DevTool } from "@hookform/devtools"; // import package devtools Hook form //
-import { useState } from "react";
 
 const Login = () => {
   const numbers = Array.from({ length: 43 }, (_, index) => index + 18); //generate age
@@ -31,6 +30,7 @@ const Login = () => {
       <h2 className="text-center">Cretae New a Account</h2>
       <form
         onSubmit={handleSubmit(submit)}
+        noValidate
         className="d-flex flex-column gap-1"
       >
         <label className="text-dark fs-3" htmlFor="FullName">
